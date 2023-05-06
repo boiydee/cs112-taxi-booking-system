@@ -45,13 +45,13 @@ public class TaxiCompany
     /**
      * A vehicle has arrived at a pickup point.
      * @param vehicle The vehicle at the pickup point.
-     * @throws MissingPassengerException If there is no passenger waiting.
+     * @throws MissingPassenger If there is no passenger waiting.
      */
     public void arrivedAtPickup(Vehicle vehicle)
     {
         Passenger passenger = assignments.remove(vehicle);
         if(passenger == null) {
-            throw new MissingPassengerException(vehicle);
+            throw new MissingPassenger(vehicle);
         }
         System.out.println(vehicle + " picks up " + passenger);
         vehicle.pickup(passenger);
