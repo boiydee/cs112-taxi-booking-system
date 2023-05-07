@@ -79,8 +79,10 @@ public class TaxiTest
     {
         taxi.pickup(passenger);
         assertEquals(false, taxi.isFree());
+        assertEquals(passenger.getDestination(), taxi.getTargetLocation());
         taxi.offloadPassenger();
         assertEquals(true, taxi.isFree());
+        assertEquals(null, taxi.getTargetLocation());
     }
     
     /**
@@ -102,6 +104,7 @@ public class TaxiTest
 
         int steps = 0;
         while(!taxi.isFree() && steps < stepsExpected) {
+            assertEquals(taxi.isFree(), false);
             taxi.act();
             steps++;
         }
